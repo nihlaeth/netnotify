@@ -30,7 +30,7 @@ For irssi notifications:
 The notification daemon has to be started inside a screen:
 
 	$ screen -S netnotify
-	$ notify-daemon.py
+	$ netnotifyd.py
 
 To detach, press Ctrl+a+d
 
