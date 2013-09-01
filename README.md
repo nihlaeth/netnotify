@@ -9,6 +9,8 @@ Author
 
 Written by nihlaeth (info@nihlaeth.nl)
 
+The issi plugin is based on the irssi-libnotify plugin: https://code.google.com/p/irssi-libnotify/
+
 Installation
 ==========
 
