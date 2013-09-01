@@ -21,13 +21,13 @@ Requirements:
 * telnet (optional)
 
 The notification daemon has to be started inside a screen:
-$ screen -S netnotify
-$ notify-daemon.py
+    $ screen -S netnotify
+    $ notify-daemon.py
 
 To detach, press Ctrl+a+d
 
 To send a notification from the system the daemon is running on (localhost), simply run:
-$ notify-send.py "Title:Body of the notification \nEasy, right?"
+    $ notify-send.py "Title:Body of the notification \nEasy, right?"
 
 To send notifications from remote hosts, edit the ip address inside the notify-send.py script to
 that of the host on which the daemon is running.
@@ -46,7 +46,7 @@ Troubleshooting
 ==========
 If no notifications are popping up and you're not getting errors, something may be wrong with your
 notification daemon. Test it by executing:
-$ notify-send Test "This is a test"
+    $ notify-send Test "This is a test"
 
 If you can send notifications from localhost but not from remote hosts, it's probably a firewall issue.
 Check the local machine's firewall, it should allow tcp traffic on port 5757. Also check if your router
