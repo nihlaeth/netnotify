@@ -84,9 +84,35 @@ def daemon_controller():
     else:
         usage()
 
+class ClientConfig(Config):
+
+    """netnotify client configuration."""
+
+    application = "netnotify"
+    author = "nihlaeth"
+
+    class ServerSection(Section):
+        address = StringOption(doc='server address', default='127.0.0.1')
+        port = IntegerOption(doc='port server is listening on', default=5757)
+
+    server = ServerSection()
+
+    class NotificationSection(Section):
+
+        """Notification message data. Fill out this section for default values."""
+
+        title = StringOption(
+            doc='notification title', required=True)
+        message = StringOption(
+            doc='notification message', required=True)
+
+    notification = NotificationSection()
+
 def send():
-    message = sys.argv[1]
+    config = ClientConfig(file_name="client")
     notification_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    notification_socket.connect(("127.0.0.1", 5757)) #seshata
-    notification_socket.send(message)
+    notification_socket.connect((config.server.address, config.server.port))
+    notification_socket.send("{}:{}".format(
+        config.notification.title,
+        config.notification.message))
     notification_socket.close()
