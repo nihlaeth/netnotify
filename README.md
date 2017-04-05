@@ -1,6 +1,6 @@
 # netnotify
 
-A simple python daemon for receiving desktop notifications from the network using libnotify
+A simple python daemon for receiving desktop notifications over the network using dbus
 
 
 ## Author
@@ -12,7 +12,7 @@ The issi plugin is based on the irssi-libnotify plugin: https://code.google.com/
 ## Installation
 
 Requirements:
-* libnotify
+* dbus-python
 
 For irssi notifications:
 * perl
@@ -21,6 +21,8 @@ For irssi notifications:
 
 ```
 $ pip install .
+# if you want to install the server:
+$ pip install ".[server]"
 ```
 
 ## Usage
@@ -34,11 +36,10 @@ $ netnotifyd start
 
 To send a notification:
 ```
-$ netnotify "Title:Body of the notification \nEasy, right?"
+$ netnotify --generate-config > ~/.config/netnotify/client.cfg
+$ vim ~/.config/netnotify/client.cfg
+$ netnotify --title Title --message "Body of the notification \nEasy, right?"
 ```
-
-You can also use the notify.sh script, though at this time it doesn't take command line arguments yet.
-You can edit the script to send different messages.
 
 ## Irssi
 Put the netnotify.py script somwhere in your path (I suggest  /usr/bin/) and make sure the right ip/hostname
@@ -50,8 +51,9 @@ To load the script automatically, copy it to the .irssi/scripts/autorun/ directo
 symlink.
 
 Be aware that the notifications are sent in plain text at this time. That means that if you send the notifications
-over the net, your highlights and private messages can be spied upon regardless of you using ssl.
+over the net, your highlights and private messages can be spied upon, and anyone can spam your screen with notifications.
 
 ## To Do
 * assign urgency to notifications
 * use ssh
+* allow client to set application name and icon
